@@ -1,8 +1,8 @@
 
 .. only:: html
 
-EPANET MSX
-==========
+   EPANET MSX
+   ==========
 
    | Water Infrastructure Division
    | Center for Environmental Solutions and Emergency Response
