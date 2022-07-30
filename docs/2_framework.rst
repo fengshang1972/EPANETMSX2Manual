@@ -106,7 +106,7 @@ cross-sectional area can be described as advection-dispersion-reaction equations
 
 where :math:`i` = species index; :math:`c_i` = concentration of the species :math:`i`; :math:`u` = flow velocity; :math:`x` = distance alone the pipe's longitudinal direction;
 :math:`D_i` = effective dispersion coefficient of the species :math:`i`; :math:`r_i` = reaction rate of the species :math:`i`; and :math:`\boldsymbol{c}` = the concentration vector of all species which includes both differential and algebraic variables as
-defined in :ref:`section-chemical_reaction` (:numref:`section-chemical_reaction`).
+defined in :ref:`section-chemical_reaction`.
 
 The impact of dispersion may be negligible for many parts of water distribution systems under highly turbulent conditions. However, it is important to consider dispersion when modeling
 dead-end segments of a system or premise plumbing systems where the flow Reynolds number can be low. The relative importance of the dispersion can be
