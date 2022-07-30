@@ -129,7 +129,7 @@ html_context = {
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'EPANETdoc'
-
+html_title = 'EPANET MSX'
 # -- Options for LaTeX output ------------------------------------------------
 latex_engine = 'pdflatex'
 latex_additional_files = ["media/logo.png", "media/epanetlogo.png"]
