@@ -17,7 +17,7 @@ hydraulic and water quality behavior of drinking water distribution
 systems. Its water quality component is limited to tracking the
 transport and fate of just a single chemical species, such as fluoride
 used in a tracer study or free chlorine used in a disinfectant decay
-study. And the longitudinal dispersion process, which can play an important role in affecting the water qualities
+study. In addition, the longitudinal dispersion process, which can play an important role in affecting the water qualities
 at the dead ends of a water distribution system, is not modeled in EPANET.  
 This manual describes an extension to the original EPANET that
 allows it to model the advection, dispersion and reaction of any system of multiple, interacting chemical species.
@@ -58,8 +58,8 @@ single-species capabilities of the current EPANET program. This
 shortcoming provides the motivation to extend EPANET so that it can
 model reaction systems of any level of complexity.
 
-Another feature in the the current version of the EPANET-MSX is the modeling option to include dispersion process in the water quality modeling analysis of water distribution system. EPANET models the transport of a single species by solving one-dimensional
-advection-reaction (AR) equation; while the EPAENT-MSX solves a set of one-dimensional advection-dispersion-reaction (ADR) equations to analyze the water quality problems that involve mutiple interacting species.     
+Another feature in EPANET-MSX is the option to include the dispersion process in the water quality modeling analysis of a water distribution system. EPANET models the transport of a single species by solving one-dimensional
+advection-reaction (AR) equation; while EPAENT-MSX solves a set of one-dimensional advection-dispersion-reaction (ADR) equations to analyze water quality transport of mutiple interacting species.     
 
 The following sections of this manual describe the conceptual framework
 used by EPANET-MSX to model multiple reacting species within a

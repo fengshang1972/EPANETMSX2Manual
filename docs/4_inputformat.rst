@@ -49,7 +49,7 @@ input file layout looks like.
  | **[PARAMETERS]**    | allows parameter values to be assigned on a pipe   |
  |                     | by pipe basis                                      |
  +---------------------+----------------------------------------------------+
- | **[DISPERSION]**    | specifies the relative molecular diffusivity of    |
+ | **[DIFFUSIVITY]**   | specifies the relative molecular diffusivity of    |
  |                     | bulk species                                       |
  +---------------------+----------------------------------------------------+
  | **[PATTERNS]**      | defines time patterns used with input sources      |
@@ -365,7 +365,7 @@ shown in bold and option choices are separated by slashes.
 
       Terms can be used to simplify reaction rate or equilibrium expressions that would otherwise be unwieldy to write all on one line or have the same terms repeated in several different rate/equilibrium equations. The definition and use of TERMS, when those terms are common and appear in multiple rate or equilibrium expressions, may speed computation because the common term expression requires only one evaluation.
 
-      Hydraulic variables consist of the following reserved names:
+      Hydraulic variables consist of the following reserved names and use the unit system specified in the EPANET input file:
 
       **D** :math:`\ \ \ ` pipe diameter (feet or meters)
 
@@ -835,14 +835,14 @@ shown in bold and option choices are separated by slashes.
       P1 0.0 0.0 0.0 0.0 0.0 0.0
 
 
-.. _dispersion:
+.. _diffusivity:
 
-**[DISPERSION]**
+**[DIFFUSIVITY]**
 ------------------
 
    **Purpose:**
 
-      Defines the relative diffusivity of the species to be incorporated in the dispesion modeling.
+      Defines the relative diffusivity of the species to be included when modeling longitudinal dispersion.
 
    **Formats:**
     
@@ -886,7 +886,7 @@ shown in bold and option choices are separated by slashes.
 
    ::
 
-      [DISPERISON]
+      [DIFFUSIVITY]
 
       ; same molucular diffusivity as chlorine at 20 deg. C
 

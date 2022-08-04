@@ -41,7 +41,7 @@
  PIPE         <pipeID>  <paramID> <value>
  TANK         <tankID>  <paramID> <value>
 
-[DISPERSION]
+[DIFUUSIVITY]
  <specieID>   <value>
 
 [PATTERNS]

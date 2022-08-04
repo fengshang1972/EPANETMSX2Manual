@@ -9,10 +9,10 @@
 PROGRAM USAGE
 ==============
 
-EPANET-MSX is distributed in a compressed archive file named
-EPANETMSX.ZIP. The contents of this archive are listed in :numref:`table-files`. The
-top level archive folder contains a *Readme.txt* file that describes the
-contents of the archive and procedures for reporting bugs.
+EPANET-MSX is a 64-bit application that runs under Microsoft Windows 7 or higher. It is distributed in 
+a compressed archive file named EPANETMSX.ZIP. The contents of this archive are listed in :numref:`table-files`. 
+The top level archive folder contains a *Readme.txt* file that describes the contents of the archive and procedures 
+for reporting bugs.
 
  .. tabularcolumns:: |p{4cm}|p{11cm}|
 
@@ -188,7 +188,7 @@ There are several things of note in this file:
 
    -  NH2CL is dissolved monochloramine, expressed in :math:`mg/L`
 
-2. The reaction rate coefficients, Ka and Kb, and the adsorption
+2. The reaction rate coefficients, :math:`K_a` and :math:`K_b`, and the adsorption
    coefficients, :math:`K_1`, :math:`K_2`, and :math:`S_{max}`, have been designated as constants. If
    instead they varied by pipe, then they could have been declared as
    parameters and their values could have been adjusted on a
@@ -292,6 +292,7 @@ programming language that can call external functions residing in a
 Windows DLL (or a Linux shared object library), such as C, C++, Visual
 Basic, and Delphi Pascal. Section :ref:`sectoolkit` describes each function included in
 the MSX toolkit library. The functions in the EPANET toolkit library are
+documented online at `http://wateranalytics.org/EPANET/ <http://wateranalytics.org/EPANET>`__.
 described in the Help file distributed with that toolkit (available at `https://www.epa.gov/water-research/epanet <https://www.epa.gov/water-research/epanet>`__).
 
 As an example of how the library can be used to construct an
@@ -329,9 +330,8 @@ calling *MSXclose* and the same is done for the EPANET system by calling
 *ENclose*.
 
 If the source code in :numref:`ex_source_file` was saved to a file named *msxepanet.c*
-then it could be compiled into an executable named *epanetmsx.exe* by
-using the following commands with the Microsoft C/C++ command line
-compiler:
+then it could be compiled into an executable named *epanetmsx.exe* by first opening a 
+Microsoft Visual Studio command prompt window and then using the following commands:
 
 *CL  /c  epanetmsx.c*
 
@@ -364,16 +364,14 @@ executables.
 EPANET-MSX has the option to compile the chemical reaction equations that a user specifies within their MSX input 
 file using a C compiler that already resides on the user's system. This can speed up execution times by a factor of 2 to 5, 
 depending on the nature of the reaction system and the choice of integration method. This option is available on Windows 
-operating systems that have either the Microsoft Visual C++ compiler or the MinGW port of the Gnu C++ compiler installed, 
+operating systems that have either the Microsoft Visual Studio C++ compiler or the MinGW port of the Gnu C++ compiler installed, 
 or on Linux systems with the Gnu C++ compiler. To utilize this option, one adds the following command to the :ref:`options` (:numref:`options`)
 section of the MSX input file: 
 
 **COMPILER** choice
 
-where choice is **VC** for the Visual C++ compiler, **GC** for the MinGW or Gnu C++ compilers, or **NONE** for no compiler 
-(the default compiler option). You can determine if your Windows system already has one of these compilers installed 
-by opening a Command Prompt window and issuing the command CL for the Visual C++ compiler or gcc for the MinGW compiler.
-If the system responds with a message saying that the command is not recognized, then the compiler is either not installed 
-or has not been configured for general use.
+where choice is **VC** for the Visual Studio C++ compiler, **GC** for the MinGW or Gnu C++ compilers, or **NONE** for no compiler 
+(the default compiler option). To determine if your Windows system has the Visual Studio C++ build tools installed you can check to 
+see if a Visual Studio folder appears on your Start Menu. To check for the MinGW compiler, open a Command Prompt window and enter *gcc*.
 
 The Gnu compiler comes standard with most Linux installations.

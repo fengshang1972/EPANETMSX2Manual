@@ -90,58 +90,6 @@ d. *Mixing in storage nodes*: all inflows to storage nodes mix
    are available for modeling plug flow storage tanks).
 
 
-.. _section-advection_dispersion_reaction:
-
-*Advection, Dispersion and Reaction*
--------------------------------------
-
-One-dimensional mass transport in a pipe with a uniform
-cross-sectional area can be described as advection-dispersion-reaction equations. For a specific species,
-
- .. math:: 
-    \begin{aligned}
-    \frac{\partial {c_i}}  {\partial {t}} + u \frac{\partial {c_i}}  {\partial {x}}= D_i\frac{\partial^2 {c_i}}  {\partial {x^2}}+r(\boldsymbol{c})
-    \end{aligned}
-    :label: 1DADR 
-
-where :math:`i` = species index; :math:`c_i` = concentration of the species :math:`i`; :math:`u` = flow velocity; :math:`x` = distance alone the pipe's longitudinal direction;
-:math:`D_i` = effective dispersion coefficient of the species :math:`i`; :math:`r_i` = reaction rate of the species :math:`i`; and :math:`\boldsymbol{c}` = the concentration vector of all species which includes both differential and algebraic variables as
-defined in :ref:`section-chemical_reaction` (:numref:`section-chemical_reaction`).
-
-The impact of dispersion may be negligible for many parts of water distribution systems under highly turbulent conditions. However, it is important to consider dispersion when modeling
-dead-end segments of a system or premise plumbing systems where the flow Reynolds number can be low. The relative importance of the dispersion can be
-quantified with the Peclet number:
-
- .. math:: 
-    \begin{aligned}
-    Pe_i = {\frac{ul}  {D_i}} 
-    \end{aligned}
-    :label: Peclet_Number
-
-where :math:`l` = pipe length. The Peclet number is a measure of the relative importance of advection versus dispersion, where a large number indicates an advectiion-dominated flow condition in which the dispersion is negligible.
-
-The effective longitudinal dispersion coefficient accounts for the combined effect of the diffusion and the shear dispersion due to the
-nonuniformity of the velocity profile. For laminar flow conditions, the effective dispersion coefficient is calcuated as an averaged value over the residence time :cite:p:`Lee2004`:
-
- .. math:: 
-    \begin{aligned}
-    D = {\frac {a^2u^2} {48D_m}}\left[1-\left[\frac{1-exp\left(-16\frac{D_mt_r}{a^2}\right)}{16{\frac{D_mt_r}{a^2}}} \right] \right] 
-    \end{aligned}
-    :label: Lee_formula
-    
-where :math:`D_m` = molecular diffusion coefficient; :math:`a` = pipe radius; and :math:`t_r` = pipe residence time (:math:`\frac {l} {u}`).
-
-For turbulent flow conditions, the effective dispersion coefficient does not depend on the molecular diffusion coefficient and the formula
-used is :cite:p:`Basha2007`:
-
- .. math:: 
-    \begin{aligned}
-    D = au_{\ast}\left[10.1+577\left(\frac{Re}{1000}\right)^{-2.2}\right]
-    \end{aligned}
-    :label: Basha_formula
-    
-where :math:`u_{\ast}` = shear velocity; and :math:`Re` = the Reynolds number.
-
 .. _section-chemical_reaction:
 
 *Chemical Reactions*
@@ -266,8 +214,8 @@ transport algorithm as used by EPANET. It tracks the movement and reaction of ch
 water volumes, or segments. These segments are transported through
 network pipes by the bulk velocity, and completely mix at junction
 nodes. This method is relatively efficient because the number and size
-of the segments in a pipe can change as hydraulic conditions change. In addition, the effevtive dispersion along the 
-longitudinal direction is modeled. The details of the Lagranigain algorithm to model advection, dispersion and reaction are described in :cite:p:`Shang2021`.
+of the segments in a pipe can change as hydraulic conditions change. In addition, EPANET-MSX adds the effect of longitudinal dispersion to EPANET's Lagrangian transport 
+algorithm.The details of the Lagranigain algorithm to model advection, dispersion and reaction are described in :cite:p:`Shang2021`.
 
 In summary form, the following steps, depicted visually in :numref:`Figure_2_3`,
 are performed for each water quality time step:
@@ -415,6 +363,60 @@ updated surface concentrations :math:`\boldsymbol{x}_{si}^{new}` and
 length of the overlapping intersection between segment :math:`j` and updated
 segment :math:`i`.
 
+
+.. _section-_dispersion:
+
+*Dispersion Modeling*
+----------------------
+
+One-dimensional mass transport in a pipe with a uniform
+cross-sectional area can be described as advection-dispersion-reaction equations. For a specific species,
+
+ .. math:: 
+    \begin{aligned}
+    \frac{\partial {c_i}}  {\partial {t}} + u \frac{\partial {c_i}}  {\partial {x}}= D_i\frac{\partial^2 {c_i}}  {\partial {x^2}}+r(\boldsymbol{c})
+    \end{aligned}
+    :label: 1DADR 
+
+where :math:`i` = species index; :math:`c_i` = concentration of the species :math:`i`; :math:`u` = flow velocity; :math:`x` = distance alone the pipe's longitudinal direction;
+:math:`D_i` = effective dispersion coefficient of the species :math:`i`; :math:`r_i` = reaction rate of the species :math:`i`; and :math:`\boldsymbol{c}` = the concentration vector of all species which includes both differential and algebraic variables as
+defined in :ref:`section-chemical_reaction` (:numref:`section-chemical_reaction`).
+
+The impact of dispersion may be negligible for many parts of water distribution systems under highly turbulent conditions. However, it is important to consider dispersion when modeling
+dead-end segments of a system or premise plumbing systems where the flow Reynolds number can be low. The relative importance of the dispersion can be
+quantified with the Peclet number:
+
+ .. math:: 
+    \begin{aligned}
+    Pe_i = {\frac{ul}  {D_i}} 
+    \end{aligned}
+    :label: Peclet_Number
+
+where :math:`l` = pipe length. The Peclet number is a measure of the relative importance of advection versus dispersion, where a large number indicates an advectiion-dominated flow condition in which the dispersion is negligible.
+
+The effective longitudinal dispersion coefficient accounts for the combined effect of molecular diffusion and shear dispersion due to the
+nonuniformity of the velocity profile. For laminar flow conditions, the effective dispersion coefficient is calcuated as an averaged value over the residence time :cite:p:`Lee2004`:
+
+ .. math:: 
+    \begin{aligned}
+    D = {\frac {a^2u^2} {48D_m}}\left[1-\left[\frac{1-exp\left(-16\frac{D_mt_r}{a^2}\right)}{16{\frac{D_mt_r}{a^2}}} \right] \right] 
+    \end{aligned}
+    :label: Lee_formula
+    
+where :math:`D_m` = molecular diffusion coefficient; :math:`a` = pipe radius; and :math:`t_r` = pipe residence time (:math:`\frac {l} {u}`).
+
+For turbulent flow conditions, the effective dispersion coefficient does not depend on the molecular diffusion coefficient and the formula
+used is :cite:p:`Basha2007`:
+
+ .. math:: 
+    \begin{aligned}
+    D = au_{\ast}\left[10.1+577\left(\frac{Re}{1000}\right)^{-2.2}\right]
+    \end{aligned}
+    :label: Basha_formula
+    
+where :math:`u_{\ast}` = shear velocity; and :math:`Re` = the Reynolds number.
+
+
 .. _section-model_implementation:
 
 *Model Implementation*
@@ -455,7 +457,8 @@ The choice of coupling involves a trade-off between computational effort
 and level of accuracy, the degree of which will likely be very system
 dependent.
 
-Mass balance report is now provided for all the species that are represented by the differential variables, :math:`\boldsymbol{x_b}` and :math:`\boldsymbol{x_s}`. 
+A mass balance report is provided for all species that are represented by the differential variables, :math:`\boldsymbol{x_b}` and :math:`\boldsymbol{x_s}`. 
+For each specie the report lists the ratio of the total mass entering the system to the total mass leaving the system (including mass lost to reaction).
 
-The current version of EPANET-MSX (2.0) takes an operator splitting approach and the dispersion process can be optionally modeled after solving the advection and reaction equations. Computationally it is not efficient to inclue all the pipes since the flow is highly turbulent and the dispersion effect is 
-negligible in many pipes. EPANET-MSX provides an option to exclude pipes based on the relative importance of the advection over dispersion, i.e. the Peclet number.    
+Dispersion modeling of particular species can be excluded from the network solution procedure by not assigning them a molecular diffusivity. It can also be excluded for pipes that experience highly turbulent 
+flow resulting in a Peclet number (:eq:`Peclet_Number`) above a user-specified limit.   

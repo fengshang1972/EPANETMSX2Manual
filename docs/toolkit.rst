@@ -15,10 +15,8 @@ The EPANET-MSX toolkit is a library of functions that programmers can
 use to create their own custom versions of the multi-species extension
 of EPANET. The MSX functions are used in conjunction with the standard
 EPANET toolkit functions :cite:`Rossman1999` which can also provide additional flexibility
-for programmers. Information on using the standard EPANET toolkit is
-available through a Windows Help file named TOOLKIT.HLP that is part of
-the EN2toolkit.zip file available at the web site
-`https://www.epa.gov/water-research/epanet <https://www.epa.gov/water-research/epanet>`__. 
+for programmers. Information on using the standard EPANET toolkit is online 
+at `http://wateranalytics.org/EPANET/ <http://wateranalytics.org/EPANET>`__. 
 :numref:`t-toolkit1`, :numref:`t-toolkit2`, and :numref:`t-toolkit3` list the name of each MSX toolkit function
 along with a brief description of its purpose.
 
@@ -27,7 +25,7 @@ These functions reside in a Windows Dynamic Link Library (DLL) named
 access DLLs, such as C/C++, Delphi Pascal, Visual Basic, and MatLab. The
 toolkit also includes special header files that must be included in any
 program modules that reference the MSX functions. These header files are
-named *epanetmsx.h* for C/C++ programs, *epanetmsx.pas* for Delphi
+named *epanetmsx.h* for C/C++ programs, *epanetmsx.pas* for Delphi/Pascal
 programs, and *epanetmsx.bas* for Visual Basic programs.
 
 Prior to using any of the MSX toolkit functions a standard EPANET input
@@ -39,9 +37,7 @@ called. Thus the header files for the standard toolkit (*epanet2.h*,
 application's code. Finally, if a stand-alone command line executable is
 being produced from C/C++ then the LIB files *epanet2.lib* and
 *epanetmsx.lib* must be linked in when the compiled source files are
-linked together. (Note: The LIB files supplied with the EPANET-MSX
-distribution are compatible with the Microsoft C/C++ compiler version 6
-and higher.)
+linked together.
 
 The following pages provide a description of each toolkit function using
 C/C++ syntax to represent argument variables and return types.
