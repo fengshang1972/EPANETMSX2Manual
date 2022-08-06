@@ -20,34 +20,36 @@ for reporting bugs.
 .. table:: Files distributed with EPANET-MSX	
    :class: longtable
    
-   +--------------------+-------------------------------------------------------+
-   | Readme.txt         | describes the contents of the archive                 |
-   +--------------------+-------------------------------------------------------+
-   | | \\bin            | |                                                     |
-   | |  epanetmsx.exe   | | command line version of EPANET-MSX                  |
-   | |  epanetmsx.dll   | | EPANET-MSX function library                         |
-   | |  epanet2.dll     | | standard EPANET function library                    |
-   +--------------------+-------------------------------------------------------+
-   | | \\Examples       | |                                                     |
-   | |  example.inp     | | example EPANET input file                           |
-   | |  example.msx     | | example MSX input file                              |
-   +--------------------+-------------------------------------------------------+
-   | | \\Doc            | |                                                     |
-   | |  epanetmsx.pdf   | | EPANET-MSX users manual                             |
-   | |  license.txt     | | licensing agreement for using EPANET-MSX            |
-   +--------------------+-------------------------------------------------------+
-   | | \\Include        | |                                                     |
-   | |  epanetmsx.h     | | C/C++ header file for EPANET-MSX toolkit            |
-   | |  epanetmsx.bas   | | Visual Basic declarations of EPANET-MSX functions   |
-   | |  epanetmsx.pas   | | Delphi-Pascal declarations of EPANET-MSX functions  |
-   | |  epanet2.h       | | C/C++ header file for EPANET2 toolkit               |
-   | |  epanet2.bas     | | Visual Basic declarations of EPANET2 functions      |
-   | |  epanet2.pas     | | Delphi-Pascal declarations of EPANET2 functions     |
-   | |  epanetmsx.lib   | | Microsoft C/C++ LIB file for epanetmsx.dll          |
-   | |  epanet2.lib     | | Microsoft C/C++ LIB file for epanet2.dll            |
-   +--------------------+-------------------------------------------------------+
-   | \\Src              | EPANET-MSX source files                               |
-   +--------------------+-------------------------------------------------------+  
+   +--------------------+--------------------------------------------------------------------------------------------------+
+   | Readme.txt         | describes the contents of the archive                                                            |
+   +--------------------+--------------------------------------------------------------------------------------------------+
+   | | \\bin            | |                                                                                                |
+   | |  epanetmsx.exe   | | command line version of EPANET-MSX                                                             |
+   | |  epanetmsx.dll   | | EPANET-MSX function library                                                                    |
+   | |  epanet2.dll     | | standard EPANET function library                                                               |
+   | |  vcomp140.dll    | | Visual Studio C/C++ OpenMP Runtime library                                                     |
+   | |  runvc.bat       | | batch file to launch the Visual Studio C/C++ compiler and comiple the reaction equations       |
+   +--------------------+--------------------------------------------------------------------------------------------------+
+   | | \\Examples       | |                                                                                                |
+   | |  example.inp     | | example EPANET input file                                                                      |
+   | |  example.msx     | | example MSX input file                                                                         |
+   +--------------------+--------------------------------------------------------------------------------------------------+
+   | | \\Doc            | |                                                                                                |
+   | |  epanetmsx.pdf   | | EPANET-MSX users manual                                                                        |
+   | |  license.txt     | | licensing agreement for using EPANET-MSX                                                       |
+   +--------------------+--------------------------------------------------------------------------------------------------+
+   | | \\Include        | |                                                                                                |
+   | |  epanetmsx.h     | | C/C++ header file for EPANET-MSX toolkit                                                       |
+   | |  epanetmsx.bas   | | Visual Basic declarations of EPANET-MSX functions                                              |   
+   | |  epanetmsx.pas   | | Delphi-Pascal declarations of EPANET-MSX functions                                             |
+   | |  epanet2.h       | | C/C++ header file for EPANET2 toolkit                                                          |
+   | |  epanet2.bas     | | Visual Basic declarations of EPANET2 functions                                                 |
+   | |  epanet2.pas     | | Delphi-Pascal declarations of EPANET2 functions                                                |
+   | |  epanetmsx.lib   | | Microsoft C/C++ LIB file for epanetmsx.dll                                                     |
+   | |  epanet2.lib     | | Microsoft C/C++ LIB file for epanet2.dll                                                       |
+   +--------------------+--------------------------------------------------------------------------------------------------+
+   | \\Src              | EPANET-MSX source files                                                                          |
+   +--------------------+--------------------------------------------------------------------------------------------------+  
  
 
 Most end users will only need to extract the files in the *\\bin*,
