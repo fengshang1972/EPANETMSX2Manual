@@ -20,8 +20,8 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = 'EPANETMSX'
-copyright = '2021'
-author = u'Lewis A. Rossman \\and Feng Shang \\and James Uber'
+copyright = '2022'
+author = u'Feng Shang \\and Lewis A. Rossman \\and James G. Uber'
 
 # The short X.Y version
 version = ''
@@ -175,7 +175,7 @@ latex_elements = {
             \textbf{\normalsize {Lewis A. Rossman}}
 
             \vspace*{1mm} %%% * is used to give space from top
-            \textbf{\normalsize {James Uber}}            
+            \textbf{\normalsize {James G. Uber}}            
 
 
             \vspace{30mm}
