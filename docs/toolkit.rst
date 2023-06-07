@@ -22,16 +22,16 @@ along with a brief description of its purpose.
 
 These functions reside in a Windows Dynamic Link Library (DLL) named
 *epanetmsx.dll* and can be used in any programming language that can
-access DLLs, such as C/C++, Delphi Pascal, Visual Basic, and MatLab. The
+access DLLs, such as C/C++, Delphi Pascal, Visual Basic, MATLAB and Python. The
 toolkit also includes special header files that must be included in any
 program modules that reference the MSX functions. These header files are
 named *epanetmsx.h* for C/C++ programs, *epanetmsx.pas* for Delphi/Pascal
 programs, and *epanetmsx.bas* for Visual Basic programs.
 
 Prior to using any of the MSX toolkit functions a standard EPANET input
-file must be opened using the *ENopen* function from the standard EPANET
+file must be opened using the ``ENopen`` function from the standard EPANET
 toolkit DLL, *epanet2.dll*. In addition, after all processing is
-completed the *ENclose* function from the standard toolkit must be
+completed the ``ENclose`` function from the standard toolkit must be
 called. Thus the header files for the standard toolkit (*epanet2.h*,
 *epanet2.pas*, or *epanet2.bas*) must also be included in the
 application's code. Finally, if a stand-alone command line executable is
@@ -192,7 +192,7 @@ MSXopen
 
 **Arguments:**
 
-   f is a C-style character string containing the name of an EPANET-MSX input file.
+   ``f`` is a C-style character string containing the name of an EPANET-MSX input file.
 
 **Returns:**
 
@@ -200,7 +200,7 @@ MSXopen
 
 **Notes:**
 
-   The standard EPANET toolkit function ENopen must have been called
+   The standard EPANET toolkit function ``ENopen`` must have been called
    first to open the EPANET toolkit along with an associated EPANET
    input file for the network being analyzed as well as to identify the
    name of a report file to which results are written.
@@ -252,7 +252,7 @@ MSXclose
 
 **Notes:**
 
-   The EPANET toolkit function ENclose should be called at some point
+   The EPANET toolkit function ``ENclose`` should be called at some point
    after calling MSXclose to close the EPANET toolkit system.
 
 **Example:**
@@ -277,6 +277,7 @@ MSXclose
 
       ENclose();
    
+.. _msxsolveh:
 
 MSXsolveH
 ---------
@@ -302,7 +303,7 @@ MSXsolveH
 
 **Notes:**
 
-   Either this function or MSXusehydfile (see below) must be called
+   Either this function or ``MSXusehydfile`` (see below :ref:`msxusehydfile`) must be called
    before any water quality processing is performed.
 
 **Example:**
@@ -323,6 +324,7 @@ MSXsolveH
 
       ...
 
+.. _msxusehydfile:
 
 MSXusehydfile
 -------------
@@ -340,7 +342,7 @@ MSXusehydfile
 
 **Arguments:**
 
-   f is a C-style character string containing the name of a previously
+   ``f`` is a C-style character string containing the name of a previously
    saved hydraulics file for the system being analyzed.
 
 **Returns:**
@@ -349,7 +351,7 @@ MSXusehydfile
 
 **Notes:**
 
-   Either this function or MSXsolveH (see above) must be called before
+   Either this function or ``MSXsolveH`` (see above :ref:`msxsolveh`) must be called before
    any water quality processing is performed.
 
 **Example:**
@@ -407,7 +409,7 @@ MSXsolveQ
 
    This function does not allow access to computed water quality results
    as the simulation unfolds. If such information is required, use
-   MSXinit in conjunction with step-wise calls to MSXstep (see below).
+   ``MSXinit`` in conjunction with step-wise calls to ``MSXstep`` (see below :ref:`msxstep`).
 
 **Example:**
 
@@ -437,6 +439,8 @@ MSXsolveQ
 
       ENclose();
 
+.. _msxinitial:
+
 MSXinit
 -------
 
@@ -453,7 +457,7 @@ MSXinit
 
 **Arguments:**
 
-   Set saveFlag to 1 if water quality results should be saved to a
+   Set ``saveFlag`` to 1 if water quality results should be saved to a
    scratch binary file, or to 0 if results are not saved to file.
 
 **Returns:**
@@ -463,12 +467,15 @@ MSXinit
 **Notes:**
 
    This function must be called before a step-wise water quality
-   simulation is performed using MSXstep. Do not call this function if
-   performing a complete simulation using MSXsolveQ.
+   simulation is performed using ``MSXstep``. Do not call this function if
+   performing a complete simulation using ``MSXsolveQ``.
 
 **Example:**
 
-   See the example provided for MSXstep.
+   See the example provided for :ref:`msxstep`.
+
+
+.. _msxstep:
 
 MSXstep
 -------
@@ -486,8 +493,8 @@ MSXstep
 
 **Arguments:**
 
-   Upon returning, t will contain the current simulation time at the end
-   of the step (in seconds) while tleft will contain the time left in
+   Upon returning, ``t`` will contain the current simulation time at the end
+   of the step (in seconds) while ``tleft`` will contain the time left in
    the simulation (also in seconds).
 
 **Returns:**
@@ -497,7 +504,7 @@ MSXstep
 **Notes:**
 
    This function should be placed in a loop that repeats until the value
-   of tleft becomes 0. MSXinit should be called before beginning the
+   of ``tleft`` becomes 0. ``MSXinit`` should be called before beginning the
    loop.
 
    The water quality time step used by this function is specified in the
@@ -549,7 +556,7 @@ MSXsaveoutfile
 
 **Arguments:**
 
-   f is a C-style character string containing the name of the permanent output results file.
+   ``f`` is a C-style character string containing the name of the permanent output results file.
 
 **Returns:**
 
@@ -592,7 +599,7 @@ MSXsavemsxfile
 
 **Arguments:**
 
-   f is a C-style character string containing the name of the file to which data are saved.
+   ``f`` is a C-style character string containing the name of the file to which data are saved.
 
 **Returns:**
 
@@ -600,9 +607,9 @@ MSXsavemsxfile
 
 **Notes:**
 
-   For a step-wise simulation using MSXstep, this function only applies
-   if MSXinit was called with its saveFlag parameter set to 1 (see
-   MSXinit).
+   For a step-wise simulation using ``MSXstep``, this function only applies
+   if ``MSXinit`` was called with its saveFlag parameter set to 1 (see
+   :ref:`msxinitial`).
 
    The format of the binary results file is described in :ref:`binary`.
 
@@ -650,7 +657,7 @@ MSXreport
 
 **Notes:**
 
-   Results are written to the report file specified in the ENopen
+   Results are written to the report file specified in the ``ENopen``
    function, unless a specific water quality report file is named in the
    :ref:`report` section of the MSX input file.
 
@@ -691,7 +698,7 @@ MSXgetindex
 
 **Arguments:**
 
-   type is the type of object being sought and must be one of the
+   ``type`` is the type of object being sought and must be one of the
    following pre-defined constants::
 
       MSX_SPECIES    (for a chemical species)
@@ -702,9 +709,9 @@ MSXgetindex
 
       MSX_PATTERN    (for a time pattern)
 
-   name is a C-style character string containing the object's ID name;
+   ``name`` is a C-style character string containing the object's ID name;
 
-   index is the sequence number (starting from 1) of the object in the
+   ``index`` is the sequence number (starting from 1) of the object in the
    order it was listed in the MSX input file. 
 
 **Returns:**
@@ -743,7 +750,7 @@ MSXgetIDlen
 
 **Arguments:**
 
-   type is the type of object being sought and must be one of the following pre-defined constants::
+   ``type`` is the type of object being sought and must be one of the following pre-defined constants::
 
       MSX_SPECIES    (for a chemical species)
 
@@ -753,10 +760,10 @@ MSXgetIDlen
 
       MSX_PATTERN    (for a time pattern)
 
-   index is the sequence number of the object (starting from 1 as listed
+   ``index`` is the sequence number of the object (starting from 1 as listed
    in the MSX input file);
 
-   len is returned with the number of characters in the object's ID
+   ``len`` is returned with the number of characters in the object's ID
    name, not counting the *null* termination character.
 
 **Returns:**
@@ -806,7 +813,7 @@ MSXgetID
 
 **Arguments:**
 
-   type is the type of object being sought and must be one of the
+   ``type`` is the type of object being sought and must be one of the
    following pre-defined constants::
 
       MSX_SPECIES    (for a chemical species)
@@ -817,13 +824,13 @@ MSXgetID
 
       MSX_PATTERN    (for a time pattern)
 
-   index is the sequence number of the object (starting from 1 as listed
+   ``index`` is the sequence number of the object (starting from 1 as listed
    in the MSX input file);
 
-   id is a C-style character string that is returned with the object's
+   ``id`` is a C-style character string that is returned with the object's
    ID name.
 
-   len is the maximum number of characters that id can hold, not
+   ``len`` is the maximum number of characters that id can hold, not
    counting the *null* termination character.
 
 **Returns:**
@@ -832,9 +839,9 @@ MSXgetID
 
 **Notes:**
 
-   The MSXgetIDlen function can determine the number of characters in an
+   The ``MSXgetIDlen`` function can determine the number of characters in an
    object's ID name so that the character array id can be properly sized
-   (to len + 1).
+   (to ``len`` + 1).
 
 **Example:**
 
@@ -867,7 +874,7 @@ MSXgetcount
 
 **Arguments:**
 
-   type is the type of object being sought and must be one of the following pre-defined constants::
+   ``type`` is the type of object being sought and must be one of the following pre-defined constants::
 
       MSX_SPECIES    (for a chemical species)
 
@@ -877,7 +884,7 @@ MSXgetcount
 
       MSX_PATTERN    (for a time pattern)
 
-   count is the number of objects of that type defined in the MSX input file.
+   ``count`` is the number of objects of that type defined in the MSX input file.
 
 **Returns:**
 
@@ -916,24 +923,24 @@ MSXgetspecies
 
 **Arguments:**
 
-   species is the sequence number of the species (starting from 1 as
+   ``species`` is the sequence number of the species (starting from 1 as
    listed in the MSX input file);
 
-   type is returned with one of the following pre-defined constants::
+   ``type`` is returned with one of the following pre-defined constants::
 
       MSX_BULK    (defined as 0)  for a bulk water species
 
       MSX_WALL    (defined as 1)  for a pipe wall surface species
 
-   units is a C-style character string array that is returned with the
+   ``units`` is a C-style character string array that is returned with the
    mass units that were defined for the species in question. It must be
    sized to hold a maximum of 15 characters plus the terminating null
    character (for a total of 16).
 
-   aTol is returned with the absolute concentration tolerance defined
+   ``aTol`` is returned with the absolute concentration tolerance defined
    for the species (in concentration units);
 
-   rTol is returned with the relative concentration tolerance defined
+   ``rTol`` is returned with the relative concentration tolerance defined
    for the species.
 
 **Returns:**
@@ -976,18 +983,18 @@ MSXgetinitqual
 
 **Arguments:**
 
-   obj is type of object being queried and must be either::
+   ``obj`` is type of object being queried and must be either::
 
       MSX_NODE    (defined as 0)  for a node
 
       MSX_LINK    (defined as 1)  for a link
 
-   index is the internal sequence number (starting from 1) assigned to
+   ``index`` is the internal sequence number (starting from 1) assigned to
    the node or link;
 
-   species is the sequence number of the species (starting from 1);
+   ``species`` is the sequence number of the species (starting from 1);
 
-   value is returned with the initial concentration of the species at
+   ``value`` is returned with the initial concentration of the species at
    the node or link of interest.
 
 **Returns:**
@@ -996,7 +1003,7 @@ MSXgetinitqual
 
 **Notes:**
 
-   The EPANET toolkit functions ENgetnodeindex and ENgetlinkindex can be
+   The EPANET toolkit functions ``ENgetnodeindex`` and ``ENgetlinkindex`` can be
    used to identify the index of a node or link from its ID name;
 
    Concentrations are expressed as mass units per liter for bulk species
@@ -1039,19 +1046,19 @@ MSXgetqual
 
 **Arguments:**
 
-   obj is type of object being queried and must be either::
+   ``obj`` is type of object being queried and must be either::
 
       MSX_NODE    (defined as 0)  for a node
 
       MSX_LINK    (defined as 1)  for a link
 
-   index is the internal sequence number (starting from 1) assigned to
+   ``index`` is the internal sequence number (starting from 1) assigned to
    the node or link;
 
-   species is the sequence number of the species (starting from 1 as
+   ``species`` is the sequence number of the species (starting from 1 as
    listed in the MSX input file);
 
-   value is returned with the computed concentration of the species at
+   ``value`` is returned with the computed concentration of the species at
    the current time period.
 
 **Returns:**
@@ -1060,7 +1067,7 @@ MSXgetqual
 
 **Notes:**
 
-   The EPANET toolkit functions ENgetnodeindex and ENgetlinkindex can be
+   The EPANET toolkit functions ``ENgetnodeindex`` and ``ENgetlinkindex`` can be
    used to identify the index of a node or link from its ID name;
 
    Concentrations are expressed as mass units per liter for bulk species
@@ -1131,10 +1138,10 @@ MSXgetconstant
 
 **Arguments:**
 
-   index is the sequence number of the reaction constant (starting from
+   ``index`` is the sequence number of the reaction constant (starting from
    1) as it appeared in the MSX input file;
 
-   value is returned with the value assigned to the constant.
+   ``value`` is returned with the value assigned to the constant.
 
 **Returns:**
 
@@ -1178,19 +1185,19 @@ MSXgetparameter
 
 **Arguments:**
 
-   obj is type of object being queried and must be either::
+   ``obj`` is type of object being queried and must be either::
 
       MSX_NODE    (defined as 0)  for a node
 
       MSX_LINK    (defined as 1)  for a link
 
-   index is the internal sequence number (starting from 1) assigned to
+   ``index`` is the internal sequence number (starting from 1) assigned to
    the node or link;
 
-   param is the sequence number of the parameter (starting from 1 as
+   ``param`` is the sequence number of the parameter (starting from 1 as
    listed in the MSX input file);
 
-   value is returned with the value assigned to the parameter for the
+   ``value`` is returned with the value assigned to the parameter for the
    node or link of interest.
 
 **Returns:**
@@ -1241,13 +1248,13 @@ MSXgetsource
 
 **Arguments:**
 
-   node is the internal sequence number (starting from 1) assigned to
+   ``node`` is the internal sequence number (starting from 1) assigned to
    the node of interest;
 
-   species is the sequence number of the species of interest (starting
+   ``species`` is the sequence number of the species of interest (starting
    from 1 as listed in the MSX input file);
 
-   type is returned with the type of external source and will be one of
+   ``type`` is returned with the type of external source and will be one of
    the following pre-defined constants::
 
       MSX_NOSOURCE   (defined as -1) for no source
@@ -1262,10 +1269,10 @@ MSXgetsource
 
    The meaning of these source types can be found in the description of the :ref:`sources` section of the MSX input file in :ref:`inputformat` of this manual.
 
-   level is returned with the baseline concentration (or mass flow rate)
+   ``level`` is returned with the baseline concentration (or mass flow rate)
    of the source;
 
-   pat is returned with the index of the time pattern used to add
+   ``pat`` is returned with the index of the time pattern used to add
    variability to the source's baseline level (and will be 0 if no
    pattern was defined for the source).
 
@@ -1310,10 +1317,10 @@ MSXgetpatternlen
 
 **Arguments:**
 
-   pat is the internal sequence number (starting from 1) of the pattern
+   ``pat`` is the internal sequence number (starting from 1) of the pattern
    as it appears in the MSX input file;
 
-   len is returned with the number of time periods (and therefore number
+   ``len`` is returned with the number of time periods (and therefore number
    of multipliers) that appear in the pattern.
 
 **Returns:**
@@ -1324,7 +1331,7 @@ MSXgetpatternlen
 
    This function only applies to source time patterns that appear in the
    MSX input file. There is a comparable EPANET toolkit function,
-   ENgetpatternlen, which can be used for the demand patterns defined in
+   ``ENgetpatternlen``, which can be used for the demand patterns defined in
    the EPANET input file.
 
 **Example:**
@@ -1362,13 +1369,13 @@ MSXgetpatternvalue
 
 **Arguments:**
 
-   pat is the internal sequence number (starting from 1) of the pattern
+   ``pat`` is the internal sequence number (starting from 1) of the pattern
    as it appears in the MSX input file;
 
-   period is the index of the time period (starting from 1) whose
+   ``period`` is the index of the time period (starting from 1) whose
    multiplier is being sought;
 
-   value is returned with the value of the pattern's multiplier in the
+   ``value`` is returned with the value of the pattern's multiplier in the
    desired period.
 
 **Returns:**
@@ -1379,7 +1386,7 @@ MSXgetpatternvalue
 
    This function only applies to source time patterns that appear in the
    MSX input file. There is a comparable EPANET toolkit function,
-   Engetpatternvalue, which can be used for the demand patterns defined
+   ``Engetpatternvalue``, which can be used for the demand patterns defined
    in the EPANET input file.
 
 **Example:**
@@ -1416,13 +1423,13 @@ MSXgeterror
 
 **Arguments:**
 
-   code is the code number of an error condition generated by
+   ``code`` is the code number of an error condition generated by
    EPANET-MSX;
 
-   msg is a C-style character string that is returned containing the
+   ``msg`` is a C-style character string that is returned containing the
    text of the error message corresponding to the error code;
 
-   len is the maximum number of characters that msg can contain.
+   ``len`` is the maximum number of characters that msg can contain.
 
 **Returns:**
 
@@ -1433,7 +1440,7 @@ MSXgeterror
    msg should be sized to accept a minimum of 80 characters.
 
    This function only applies to error codes generated by the MSX
-   toolkit. There is a comparable EPANET toolkit function, ENgeterror,
+   toolkit. There is a comparable EPANET toolkit function, ``ENgeterror``,
    that applies to EPANET errors.
 
 **Example:**
@@ -1477,10 +1484,10 @@ MSXsetconstant
 
 **Arguments:**
 
-   index is the sequence number of the reaction constant (starting from
+   ``index`` is the sequence number of the reaction constant (starting from
    1) as it appeared in the MSX input file;
 
-   value is the new value to be assigned to the constant.
+   ``value`` is the new value to be assigned to the constant.
 
 **Returns:**
 
@@ -1523,19 +1530,19 @@ MSXsetparameter
 
 **Arguments:**
 
-   type is type of object being queried and must be either::
+   ``type`` is type of object being queried and must be either::
 
       MSX_NODE    (defined as 0) for a node
 
       MSX_LINK    (defined as 1) for a link
 
-   index is the internal sequence number (starting from 1) assigned to
+   ``index`` is the internal sequence number (starting from 1) assigned to
    the node or link;
 
-   param is the sequence number of the parameter (starting from 1 as
+   ``param`` is the sequence number of the parameter (starting from 1 as
    listed in the MSX input file);
 
-   value is the value to be assigned to the parameter for the node or
+   ``value`` is the value to be assigned to the parameter for the node or
    link of interest.
 
 **Returns:**
@@ -1587,19 +1594,19 @@ MSXsetinitqual
 
 **Arguments:**
 
-   type is type of object being queried and must be either::
+   ``type`` is type of object being queried and must be either::
 
       MSX_NODE    (defined as 0) for a node
 
       MSX_LINK    (defined as 1) for a link
 
-   index is the internal sequence number (starting from 1) assigned to
+   ``index`` is the internal sequence number (starting from 1) assigned to
    the node or link;
 
-   species is the sequence number of the species (starting from 1 as
+   ``species`` is the sequence number of the species (starting from 1 as
    listed in the MSX input file);
 
-   value is the initial concentration of the species to be applied at
+   ``value`` is the initial concentration of the species to be applied at
    the node or link of interest.
 
 **Returns:**
@@ -1608,7 +1615,7 @@ MSXsetinitqual
 
 **Notes:**
 
-   The EPANET toolkit functions ENgetnodeindex and ENgetlinkindex can be
+   The EPANET toolkit functions ``ENgetnodeindex`` and ``ENgetlinkindex`` can be
    used to identify the index of a node or link from its ID name;
 
    Concentrations are expressed as mass units per liter for bulk species
@@ -1653,13 +1660,13 @@ MSXsetsource
 
 **Arguments:**
 
-   node is the internal sequence number (starting from 1) assigned to
+   ``node`` is the internal sequence number (starting from 1) assigned to
    the node of interest;
 
-   species is the sequence number of the species of interest (starting
+   ``species`` is the sequence number of the species of interest (starting
    from 1 as listed in the MSX input file);
 
-   type is the type of external source to be utilized and will be one of
+   ``type`` is the type of external source to be utilized and will be one of
    the following pre-defined constants::
 
       MSX_NOSOURCE    (defined as -1) for no source
@@ -1675,10 +1682,10 @@ MSXsetsource
    The meaning of these source types can be found in the description of
    the :ref:`sources` section of the MSX input file in :ref:`inputformat` of this manual.
 
-   level is the baseline concentration (or mass flow rate) of the
+   ``level`` is the baseline concentration (or mass flow rate) of the
    source;
 
-   pat is the index of the time pattern used to add variability to the
+   ``pat`` is the index of the time pattern used to add variability to the
    source's baseline level (use 0 if the source has a constant
    strength).
 
@@ -1688,7 +1695,7 @@ MSXsetsource
 
 **Notes:**
 
-   The EPANET toolkit function ENgetnodeindex can be used to identify
+   The EPANET toolkit function ``ENgetnodeindex`` can be used to identify
    the index of a node from its ID name;
 
    Concentrations are expressed as mass units per liter for bulk species
@@ -1732,13 +1739,13 @@ MSXsetpattern
 
 **Arguments:**
 
-   pat is the internal sequence number (starting from 1) of the pattern
+   ``pat`` is the internal sequence number (starting from 1) of the pattern
    as it appears in the MSX input file;
 
-   mult[] is an array of multiplier values to replace those previously
+   ``mult[]`` is an array of multiplier values to replace those previously
    used by the pattern;
 
-   len is the number of entries int the multiplier array mult.
+   ``len`` is the number of entries int the multiplier array mult.
 
 **Returns:**
 
@@ -1748,7 +1755,7 @@ MSXsetpattern
 
    This function only applies to source time patterns that appear in the
    MSX input file. There is a comparable EPANET toolkit function,
-   ENsetpattern, which can be used for the demand patterns defined in
+   ``ENsetpattern``, which can be used for the demand patterns defined in
    the EPANET input file.
 
 **Example:**
@@ -1790,13 +1797,13 @@ MSXsetpatternvalue
 
 **Arguments:**
 
-   pat is the internal sequence number (starting from 1) of the pattern
+   ``pat`` is the internal sequence number (starting from 1) of the pattern
    as it appears in the MSX input file;
 
-   period is the time period (starting from 1) in the pattern to be
+   ``period`` is the time period (starting from 1) in the pattern to be
    replaced;
 
-   value is the new multiplier value to use for that time period.
+   ``value`` is the new multiplier value to use for that time period.
 
 **Returns:**
 
@@ -1806,7 +1813,7 @@ MSXsetpatternvalue
 
    This function only applies to source time patterns that appear in the
    MSX input file. There is a comparable EPANET toolkit function,
-   ENsetpatternvalue, which can be used for the demand patterns defined
+   ``ENsetpatternvalue``, which can be used for the demand patterns defined
    in the EPANET input file.
 
 **Example:**
@@ -1856,7 +1863,7 @@ MSXaddpattern
 
 **Arguments:**
 
-   id is a C-style character string containing the name of the new
+   ``id`` is a C-style character string containing the name of the new
    pattern.
 
 **Returns:**
@@ -1866,7 +1873,7 @@ MSXaddpattern
 **Notes:**
 
    The new pattern has no time periods or multipliers assigned to it.
-   The MSXsetpattern function can be used to assign an array of
+   The ``MSXsetpattern`` function can be used to assign an array of
    multipliers to the pattern.
 
 **Example:**

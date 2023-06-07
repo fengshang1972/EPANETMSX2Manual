@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
 */
 {
     int    err, done = 1;
-    long   t, tleft;
+    double   t, tleft;
     long   oldHour, newHour;
 
     // --- Check command line arguments
@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
     }
     // --- Open the EPANET file
 
-    printf("\n... EPANET-MSX Version 1.0\n");
+    printf("\n... EPANET-MSX Version 2.0\n");
     printf("\n  o Processing EPANET input file");
     err = ENopen(argv[1], argv[3], "");
     if (err) {
@@ -96,7 +96,7 @@ int main(int argc, char* argv[])
 
             // --- Compute water quality
             err = MSXstep(&t, &tleft);
-            newHour = t / 3600;
+            newHour = (long) (t / 3600.0);
 
         } while (!err && tleft > 0);
         // --- Report any runtime error
@@ -106,7 +106,7 @@ int main(int argc, char* argv[])
             break;
         }
         else
-            printf("\r  o Computing water quality at hour %-4d", t / 3600);
+            printf("\r  o Computing water quality at hour %-4d", (long) (t / 3600.0));
 
         // --- Report results
 

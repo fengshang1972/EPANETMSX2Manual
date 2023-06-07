@@ -1,3 +1,9 @@
+[OPTIONS]
+  AREA_UNITS  FT2
+  RATE_UNITS  HR
+  SOLVER      RK5
+  TIMESTEP    180
+
 [SPECIES]
   BULK  A3    UG                    ;Dissolved arsenite
   BULK  A5    UG                    ;Dissolved arsenate
@@ -13,7 +19,7 @@
   CONSTANT  K2   1.0                ;Arsenate desorption rate coeff.
 
 [TERMS]
-  Kf     1.6e-4*Re^0.88/D           ;Mass transfer coefficient (Ft/Hr)
+  Kf     6.67e-4*Re^0.88/D           ;Mass transfer coefficient (Ft/Hr)
   Ks     K1/K2                      ;Arsenate equil. adsorption coeff.
   LPERCF 28.316                     ;Liters/Cu. Ft. (conversion for Kf)
 

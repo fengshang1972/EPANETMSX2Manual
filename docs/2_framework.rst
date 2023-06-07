@@ -21,9 +21,8 @@ also oxidizing ferrous iron to ferric iron in the fixed surface phase at
 the pipe wall.   
 
 .. _Figure_2_1:
-.. figure:: ./media/image2.png
-   :width: 5.96388in
-   :height: 2.76667in
+.. figure:: ./media/image2_1.png
+   :width: 5.0in
    
    Example of reactions in the mobile bulk phase and at the fixed pipe surface phase.
 
@@ -53,8 +52,8 @@ a storage tank, could also be included within this modeling framework.
 *Material Transport*
 ---------------------
 
-A water distribution system consists of pipes, pumps, valves, fittings
-and storage facilities that convey water from source points to
+A water distribution system consists of pipes, pumps, valves, fittings, and storage 
+facilities that convey water from source points to
 consumers. This physical system is modeled as a network of links
 connected together at nodes in some particular branched or looped
 arrangement. :numref:`Figure_2_2` provides an example of a network representation
@@ -65,10 +64,9 @@ contained in the system and can be modeled using principles of
 conservation of mass coupled with reaction kinetics:
 
 .. _Figure_2_2:
-.. figure:: ./media/image3.png
-   :alt: Chart, diagram, schematic, box and whisker chart Description automatically generated
-   :width: 3.22528in
-   :height: 2.3002in
+.. figure:: ./media/image3b.png
+   :width: 4.0in
+   
 
    Node-link representation of a simple distribution system.
 
@@ -77,8 +75,8 @@ a. *Advective transport in pipes*: bulk species are transported down the
    while at the same time reacting with other bulk species and with the
    pipe wall surface.
 
-b. *Dispersive transport in pipes*: due to the differences of concentrations and flow 
-   velocities, bulk species spread from highly concentrated to less concentrated areas.
+b. *Dispersive transport in pipes*: due to the differences of concentration and the distribution of the radial flow velocity,
+   bulk species spread from highly concentrated to less concentrated areas.
    
 c. *Mixing at pipe junctions*: at junctions receiving inflow from two or
    more links the flows are assumed to undergo complete and
@@ -112,7 +110,7 @@ integration time steps so as to make a numerical solution impractical.
 In EPANET-MSX, algebraic equations are used to represent the
 fast/equilibrium reactions and mass conservation. Thus it is assumed
 that all reaction dynamics can be described by a set of
-differential-algebraic equations (DAEs) that is in semi-explicit format.
+differential-algebraic equations (DAEs) in semi-explicit form.
 The system of DAEs that defines the interactions between bulk species,
 surface species, and parameter values can be written in general terms
 as:
@@ -258,7 +256,7 @@ segment, reaction dynamics are represented by the system of DAEs
 :eq:`DAEbulk`-:eq:`DAEequil`. The same applies for storage tanks, except that the DAEs are
 modified to consider only bulk reactions. Although not indicated, the
 model parameters **p** can possibly vary by pipe. For the equilibrium
-reactions it is assumed that the Jacobian matrix of :math:`\boldsymbol{h}` with respect
+reactions, it is assumed that the Jacobian matrix of :math:`\boldsymbol{h}` with respect
 to :math:`\boldsymbol{z}`, :math:`\partial \boldsymbol{h} \over \partial \boldsymbol{z}`, is unique and nonsingular for all :math:`t`. In
 this case, the implicit functions defined by :eq:`DAEequil`,
 
@@ -392,10 +390,10 @@ quantified with the Peclet number:
     \end{aligned}
     :label: Peclet_Number
 
-where :math:`l` = pipe length. The Peclet number is a measure of the relative importance of advection versus dispersion, where a large number indicates an advectiion-dominated flow condition in which the dispersion is negligible.
+where :math:`l` = pipe length. The Peclet number is a dimensionless measure of the relative importance of advection versus dispersion, where a large number indicates an advection-dominated flow condition in which the dispersion is negligible.
 
 The effective longitudinal dispersion coefficient accounts for the combined effect of molecular diffusion and shear dispersion due to the
-nonuniformity of the velocity profile. For laminar flow conditions, the effective dispersion coefficient is calcuated as an averaged value over the residence time :cite:p:`Lee2004`:
+nonuniformity of the velocity profile. For laminar flow conditions (Reynolds number less than 2300), the effective dispersion coefficient is calcuated as an averaged value over the residence time :cite:p:`Lee2004`:
 
  .. math:: 
     \begin{aligned}
@@ -405,7 +403,7 @@ nonuniformity of the velocity profile. For laminar flow conditions, the effectiv
     
 where :math:`D_m` = molecular diffusion coefficient; :math:`a` = pipe radius; and :math:`t_r` = pipe residence time (:math:`\frac {l} {u}`).
 
-For turbulent flow conditions, the effective dispersion coefficient does not depend on the molecular diffusion coefficient and the formula
+For turbulent and transitional flow conditions, the effective dispersion coefficient does not depend on the molecular diffusion coefficient and the formula
 used is :cite:p:`Basha2007`:
 
  .. math:: 
@@ -458,7 +456,7 @@ and level of accuracy, the degree of which will likely be very system
 dependent.
 
 A mass balance report is provided for all species that are represented by the differential variables, :math:`\boldsymbol{x_b}` and :math:`\boldsymbol{x_s}`. 
-For each specie the report lists the ratio of the total mass entering the system to the total mass leaving the system (including mass lost to reaction).
+For each species the report lists the ratio of the total mass entering the system to the total mass leaving the system (including mass lost to reaction).
 
 Dispersion modeling of particular species can be excluded from the network solution procedure by not assigning them a molecular diffusivity. It can also be excluded for pipes that experience highly turbulent 
 flow resulting in a Peclet number (:eq:`Peclet_Number`) above a user-specified limit.   

@@ -38,7 +38,7 @@ in :numref:`t-binary` below.
    || For each water quality species:                ||                    |
    ||   Number of characters in ID name (N)          || 4-byte integer     |
    ||   ID name                                      || N character bytes  |
-   ||   Species units                                || 15 character bytes |
+   ||   Species units                                || 16 character bytes |
    +-------------------------------------------------+---------------------+
    || For each reporting period:                     ||                    |
    ||   For each water quality species:              ||                    |

@@ -14,42 +14,47 @@ a compressed archive file named EPANETMSX.ZIP. The contents of this archive are 
 The top level archive folder contains a *Readme.txt* file that describes the contents of the archive and procedures 
 for reporting bugs.
 
- .. tabularcolumns:: |p{4cm}|p{11cm}|
+ .. tabularcolumns:: |p{3.5cm}|p{12.5cm}|
 
 .. _table-files:
 .. table:: Files distributed with EPANET-MSX	
    :class: longtable
    
-   +--------------------+--------------------------------------------------------------------------------------------------+
-   | Readme.txt         | describes the contents of the archive                                                            |
-   +--------------------+--------------------------------------------------------------------------------------------------+
-   | | \\bin            | |                                                                                                |
-   | |  epanetmsx.exe   | | command line version of EPANET-MSX                                                             |
-   | |  epanetmsx.dll   | | EPANET-MSX function library                                                                    |
-   | |  epanet2.dll     | | standard EPANET function library                                                               |
-   | |  vcomp140.dll    | | Visual Studio C/C++ OpenMP Runtime library                                                     |
-   | |  runvc.bat       | | batch file to launch the Visual Studio C/C++ compiler and comiple the reaction equations       |
-   +--------------------+--------------------------------------------------------------------------------------------------+
-   | | \\Examples       | |                                                                                                |
-   | |  example.inp     | | example EPANET input file                                                                      |
-   | |  example.msx     | | example MSX input file                                                                         |
-   +--------------------+--------------------------------------------------------------------------------------------------+
-   | | \\Doc            | |                                                                                                |
-   | |  epanetmsx.pdf   | | EPANET-MSX users manual                                                                        |
-   | |  license.txt     | | licensing agreement for using EPANET-MSX                                                       |
-   +--------------------+--------------------------------------------------------------------------------------------------+
-   | | \\Include        | |                                                                                                |
-   | |  epanetmsx.h     | | C/C++ header file for EPANET-MSX toolkit                                                       |
-   | |  epanetmsx.bas   | | Visual Basic declarations of EPANET-MSX functions                                              |   
-   | |  epanetmsx.pas   | | Delphi-Pascal declarations of EPANET-MSX functions                                             |
-   | |  epanet2.h       | | C/C++ header file for EPANET2 toolkit                                                          |
-   | |  epanet2.bas     | | Visual Basic declarations of EPANET2 functions                                                 |
-   | |  epanet2.pas     | | Delphi-Pascal declarations of EPANET2 functions                                                |
-   | |  epanetmsx.lib   | | Microsoft C/C++ LIB file for epanetmsx.dll                                                     |
-   | |  epanet2.lib     | | Microsoft C/C++ LIB file for epanet2.dll                                                       |
-   +--------------------+--------------------------------------------------------------------------------------------------+
-   | \\Src              | EPANET-MSX source files                                                                          |
-   +--------------------+--------------------------------------------------------------------------------------------------+  
+   +--------------------+------------------------------------------------------------------------------------------------------------------------------------+
+   | Readme.txt         | describes the contents of the archive                                                                                              |
+   +--------------------+------------------------------------------------------------------------------------------------------------------------------------+
+   | | \\bin            | |                                                                                                                                  |
+   | |  runepanetmsx.exe| | command line version of EPANET-MSX                                                                                               |
+   | |  epanetmsx.dll   | | EPANET-MSX function library                                                                                                      |
+   | |  epanet2.dll     | | standard EPANET function library                                                                                                 |
+   | |  vcomp140.dll    | | Visual Studio C/C++ OpenMP Runtime library                                                                                       |
+   | |  runvc.bat       | | batch file to launch the Visual Studio C/C++ compiler and comiple the reaction equations (see the section :ref:`compiler`)       |
+   +--------------------+------------------------------------------------------------------------------------------------------------------------------------+
+   | | \\Examples       | |                                                                                                                                  |
+   | |  example1.inp    | | EPANET input file for example 1                                                                                                  |
+   | |  example1.msx    | | MSX input file for example 1                                                                                                     |
+   | |  example1.rpt    | | report file containing the MSX results for example 1                                                                             |
+   | |  example2.inp    | | EPANET input file for example 2                                                                                                  |
+   | |  example2.msx    | | MSX input file for example 2                                                                                                     |
+   | |  example2.rpt    | | report file containing the MSX results for example 2                                                                             |
+   +--------------------+------------------------------------------------------------------------------------------------------------------------------------+
+   | | \\Doc            | |                                                                                                                                  |
+   | |  epanetmsx.pdf   | | EPANET-MSX users manual                                                                                                          |
+   | |  license.txt     | | licensing agreement for using EPANET-MSX                                                                                         |
+   +--------------------+------------------------------------------------------------------------------------------------------------------------------------+
+   | | \\Include        | |                                                                                                                                  |
+   | |  epanetmsx.h     | | C/C++ header file for EPANET-MSX toolkit                                                                                         |
+   | |  epanetmsx.bas   | | Visual Basic declarations of EPANET-MSX functions                                                                                |   
+   | |  epanetmsx.pas   | | Delphi-Pascal declarations of EPANET-MSX functions                                                                               |
+   | |  epanet2.h       | | C/C++ header file for EPANET2.2 toolkit                                                                                          |
+   | |  epanet2_enums.h | | C/C++ header file for the symbolic constants used by EPANET2.2 Toolkit                                                           |
+   | |  epanet2.bas     | | Visual Basic declarations of EPANET2 functions                                                                                   |
+   | |  epanet2.pas     | | Delphi-Pascal declarations of EPANET2 functions                                                                                  |
+   | |  epanetmsx.lib   | | Microsoft C/C++ LIB file for epanetmsx.dll                                                                                       |
+   | |  epanet2.lib     | | Microsoft C/C++ LIB file for epanet2.dll                                                                                         |
+   +--------------------+------------------------------------------------------------------------------------------------------------------------------------+
+   | \\Src              | EPANET-MSX source files                                                                                                            |
+   +--------------------+------------------------------------------------------------------------------------------------------------------------------------+  
  
 
 Most end users will only need to extract the files in the *\\bin*,
@@ -60,7 +65,7 @@ requirements set forth in the *license.txt* file.
 
 The EPANET-MSX system is supplied as both:
 
--  a stand-alone console application (*epanetmsx.exe*) that can run
+-  a stand-alone console application (*runepanetmsx.exe*) that can run
    standard water quality analyses without any additional programming
    effort required,
 
@@ -100,7 +105,6 @@ this network while :numref:`table_3-3` does the same for the pipe links.
 .. figure:: ./media/image17.png
    :alt: Chart Description automatically generated
    :width: 4.30037in
-   :height: 1.65014in
 
    Schematic of the example pipe network
 
@@ -149,15 +153,15 @@ hydraulic analysis of the system. The Windows version of EPANET 2 was
 used to draw the network layout and assign node and pipe attributes
 using the program's graphical editing tools. A standard .INP file was
 then created by issuing the **File \| Export \| Network** command. The
-resulting file was named *example.inp* and is shown in :numref:`ex_input_file` (after
+resulting file was named *example1.inp* and is shown in :numref:`ex_input_file` (after
 some editing was performed to remove empty sections and default
 options). Note that for this simple application the water demands remain
 constant over time and that a 48 hour simulation period is requested.
 
-.. literalinclude:: example.inp
+.. literalinclude:: example1.inp
     :language: none
     :name: ex_input_file
-    :caption: Contents of the *example.inp* input file.
+    :caption: Contents of the *example1.inp* input file.
 ..
 
 
@@ -165,13 +169,13 @@ The next step is to prepare the MSX input file that defines the
 individual water quality species of interest and the reaction
 expressions that govern their dynamics. This was done using a text
 editor, following the format described in :ref:`inputformat` (:numref:`inputformat`) of this manual. The
-resulting MSX input file, named *example.msx*, is shown in :numref:`ex_msx_file`.
+resulting MSX input file, named *example1.msx*, is shown in :numref:`ex_msx_file`.
 
 
-.. literalinclude:: example.msx
+.. literalinclude:: example1.msx
     :language: none
     :name: ex_msx_file
-    :caption: Contents of the *example.msx* input file.
+    :caption: Contents of the *example1.msx* input file.
 ..
 
 
@@ -194,7 +198,7 @@ There are several things of note in this file:
    coefficients, :math:`K_1`, :math:`K_2`, and :math:`S_{max}`, have been designated as constants. If
    instead they varied by pipe, then they could have been declared as
    parameters and their values could have been adjusted on a
-   pipe-specific basis in the [PARAMETERS] section of the file. Note
+   pipe-specific basis in the [PARAMETERS] section (:numref:`parameters`) of the file. Note
    that the units of these coefficients are as follows: :math:`(L/mg\text{-}hr)` for
    :math:`K_a`; :math:`(1/hr)` for :math:`K_b`, :math:`(L/\mu g\text{-}hr)` for :math:`K_1`; :math:`(1/hr)` for :math:`K_2`; :math:`\mu g/m^2`
    for :math:`S_{max}`.
@@ -247,26 +251,26 @@ There are several things of note in this file:
 The final step in analyzing arsenic oxidation/adsorption for our example
 network is to run the EPANET-MSX command line executable. This can be
 done by first opening a Command Prompt window in Windows, navigating to
-the folder where *epanetmsx.exe* and the input files were saved, and
+the folder where *runepanetmsx.exe*, *epanetmsx.dll*, *epanet2.dll* and the input files were saved, and
 issuing the following command:
 
-*epanetmsx example.inp example.msx example.rpt*
+*runepanetmsx.exe example1.inp example1.msx example1.rpt example1.out*
 
-where *example.rpt* is the name of the file where the results will be
+where *example1.rpt* is the name of the file where the results will be
 written. If the executable were saved to a different folder than that of
 the example files, then either the full path name would have to be added
 to the name of the executable on the command line or the folder name
-would have to be added to the user's PATH environment variable. :numref:`figure_3_2` is a screen capture of what appears on the screen as the program
-runs.
+would have to be added to the user's PATH environment variable. :numref:`figure_3_2` is a screen capture of what appears on 
+the screen as the program runs. The last argument of the *runepanetmsx.exe* is optional and specifies the binary output file name. The details
+of the binary output file are described in :ref:`binary`.   
 
 .. _figure_3_2:
 .. figure:: ./media/image20_22.png
-   :scale: 100 %
    
    Command line execution of EPANET-MSX.
 .. _section-6:
 
-After the program finishes, the *example.rpt* file can be opened in any
+After the program finishes, the *example1.rpt* file can be opened in any
 text editor (such as Windows Notepad) where its contents can be viewed.
 Excerpts from the results file are reproduced in :numref:`ex_rpt_file`. The first
 page contains a summary of the standard EPANET options that were chosen
@@ -275,9 +279,10 @@ link. These tables contain the concentrations of each species at each
 reporting period. Note that the surface species are not listed for nodes
 since by definition this class of constituent is associated only with
 pipe surfaces. At the end of the report file, the mass balance summaries of the three differential variables (:math:`As^{+3}`, ::math:`As^{+5}` and :math:`NH_2Cl`) are provided.
+These mass balances reports are consistent with those provided by EPANET 2.2, and will include all relevant species. Starting and 
+ending mass, mass inflow, outflow, and reacted are included. 
 
-
-.. literalinclude:: example.rpt
+.. literalinclude:: example1.rpt
     :language: none
     :name: ex_rpt_file
     :caption: EPANET-MSX results for the example network
@@ -295,11 +300,10 @@ Windows DLL (or a Linux shared object library), such as C, C++, Visual
 Basic, and Delphi Pascal. Section :ref:`sectoolkit` describes each function included in
 the MSX toolkit library. The functions in the EPANET toolkit library are
 documented online at `http://wateranalytics.org/EPANET/ <http://wateranalytics.org/EPANET>`__.
-described in the Help file distributed with that toolkit (available at `https://www.epa.gov/water-research/epanet <https://www.epa.gov/water-research/epanet>`__).
 
 As an example of how the library can be used to construct an
 application, :numref:`ex_source_file` displays the C code behind the command line
-implementation of the MSX system, *epanetmsx.exe,* which was just
+implementation of the MSX system, *runepanetmsx.exe*, which was just
 discussed. The listing begins by checking for the correct number of
 command line arguments and then attempts to open and read the EPANET
 file supplied as the first argument. It uses the EPANET toolkit function
@@ -331,15 +335,16 @@ binary format to this file. Lastly, the MSX system is closed down by
 calling *MSXclose* and the same is done for the EPANET system by calling
 *ENclose*.
 
-If the source code in :numref:`ex_source_file` was saved to a file named *msxepanet.c*
-then it could be compiled into an executable named *epanetmsx.exe* by first opening a 
-Microsoft Visual Studio command prompt window and then using the following commands:
+If the source code in :numref:`ex_source_file` was saved to a file named *epanetmsx.c*
+then it could be compiled into an executable named *runepanetmsx.exe* by first opening a 
+Microsoft Visual Studio command prompt window (64-bit) and then using the following commands:
 
 *CL  /c  epanetmsx.c*
 
-*LINK  epanetmsx.obj  epanet2.lib  epanetmsx.lib  /OUT:epanetmsx.exe*
+*LINK  epanetmsx.obj  epanet2.lib  epanetmsx.lib  /OUT:runepanetmsx.exe*
 
-Note that when developing MSX applications in C/C++, the library modules
+Note that when developing MSX applications in C/C++, the header files *epanet2.h*, *epanetmsx.h* and *epanet2_enums.h* must be 
+in the same folder as the application's source codes (*epanetmsx.c* here), and the library modules
 *epanet2.lib* and *epanetmsx.lib* must be linked in with the
 application's object modules. Versions of these files that are
 compatible with the Microsoft C/C++ compiler (Version 6 and higher) are
@@ -359,6 +364,8 @@ executables.
     :caption: C source code for the command line version of EPANET-MSX
 ..
 
+
+.. _Compiler: 
 
 *Using Compiled Reaction Models*
 ---------------------------------

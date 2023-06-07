@@ -3,7 +3,7 @@
 
 [OPTIONS]
  AREA_UNITS  FT2/M2/CM2
- TIME_UNITS  SEC/MIN/HR/DAY
+ RATE_UNITS  SEC/MIN/HR/DAY
  SOLVER      EUL/RK5/ROS2
  COUPLING    FULL/NONE	
  TIMESTEP    <seconds>
@@ -41,7 +41,7 @@
  PIPE         <pipeID>  <paramID> <value>
  TANK         <tankID>  <paramID> <value>
 
-[DIFUUSIVITY]
+[DIFFUSIVITY]
  <specieID>   <value>
 
 [PATTERNS]

@@ -5,7 +5,7 @@
   	\pagenumbering{arabic}
     \setcounter{page}{1}
     \setcounter{chapter}{0}
-    \chapter{Introduction}
+    \chapter{INTRODUCTTION}
 
 .. _introduction: 
 
@@ -20,7 +20,7 @@ used in a tracer study or free chlorine used in a disinfectant decay
 study. In addition, the longitudinal dispersion process, which can play an important role in affecting the water qualities
 at the dead ends of a water distribution system, is not modeled in EPANET.  
 This manual describes an extension to the original EPANET that
-allows it to model the advection, dispersion and reaction of any system of multiple, interacting chemical species.
+allows it to model the advection, dispersion and reaction of any system of multiple, interacting chemical and biological species.
 This capability has been incorporated into both a stand-alone executable
 program as well as a toolkit library of functions that programmers can
 use to build custom applications. This set of software tools is referred
@@ -31,7 +31,7 @@ by using a multi-species approach. Consider the following descriptive
 examples:
 
 - Free chlorine disinfectant is lost in bulk solution due mainly to oxidation-reduction
-  reactions involving HOCl and OCl\ :sup:`-` and natural organic matter (NOM). The NOM itself
+  reactions involving HOCl and OCl\ :sup:`-`, and natural organic matter (NOM). The NOM itself
   is a heterogeneous mixture of organic compounds (e.g., humic and fulvic acids) of varying 
   chemical characteristics. Current single-species models, however, must model free chlorine loss under
   the assumption that all other reactants are in excess and thus their concentrations
@@ -58,8 +58,18 @@ single-species capabilities of the current EPANET program. This
 shortcoming provides the motivation to extend EPANET so that it can
 model reaction systems of any level of complexity.
 
-Another feature in EPANET-MSX is the option to include the dispersion process in the water quality modeling analysis of a water distribution system. EPANET models the transport of a single species by solving one-dimensional
-advection-reaction (AR) equation; while EPAENT-MSX solves a set of one-dimensional advection-dispersion-reaction (ADR) equations to analyze water quality transport of mutiple interacting species.     
+Another feature in EPANET-MSX 2.0 is the option to include the dispersion process in the water quality modeling analysis of a water distribution system. Both EPANET and the original EPANET MSX model the transport of a single species by solving the one-dimensional
+advection-reaction equation; while EPAENT-MSX 2.0 solves a set of one-dimensional advection-dispersion-reaction equations to analyze water quality transport of mutiple interacting species.     
+
+The changes and updates that have been made in version 2.0 of EPANET-MSX include:
+
+- Improved water quality mass balance and mass balance reporting as in EPANET 2.2.
+
+- Dispersion modeling as an option to be included in water quality simulation.
+
+- OPENMP parallelization for both reaction and dispersion simulation codes.
+
+- A batch file (runvc.bat) is provided to automatically launch the Visual Studio C/C++ compiler and compile the reaction equations.
 
 The following sections of this manual describe the conceptual framework
 used by EPANET-MSX to model multiple reacting species within a

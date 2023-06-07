@@ -2,14 +2,17 @@
 .. raw:: latex
 
     \clearpage
-    
+    \renewcommand{\bibname}{BIBLIOGRAPHY}
+
 
 .. only:: html
 
     BIBLIOGRAPHY
     ============
 
-.. bibliography:: epanetmsx.bib
+
+
+.. BIBLIOGRAPHY:: epanetmsx.bib
    :style: plain
 
 

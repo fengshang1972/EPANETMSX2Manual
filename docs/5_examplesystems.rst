@@ -26,9 +26,8 @@ show the average fraction of water in each pipe that originates from the
 River (Source 1).
 
 .. _Figure_5_1:
-.. figure:: ./media/figure51.png
+.. figure:: ./media/figure51.jpg
    :width: 4.54167in
-   :height: 4.00833in
    
    Example of a two-source water distribution system showing the average percent of water originating from the River source
 
@@ -92,10 +91,74 @@ where the two source nodes are represented as reservoirs with ID names
 equilibrium species, and assumes that a constant chlorine concentration
 of 1.2 :math:`mg/L` is maintained at each source.
 
-.. literalinclude:: twosources.inp
+.. literalinclude:: twosources.msx
     :language: none
     :caption: EPANET-MSX input file for modeling two-source chlorine decay
     :name: ex_twosources_inp
+..
+
+
+*Decay and Dispersion Modeling of Chlorine*
+----------------------------------------------------------
+This example illustrates how to use EPANET MSX to model the advection, self-decay, and dispersion of the chlorine within a water distrinution
+system. The chlorine decay model is the same as the first order decay model in EPANET 2.2. Both bulk decay and wall decay are considered in this example.
+
+The rate of chlorine first-order decay in bulk water is described as:
+
+  .. math::
+     r_b = -K_b*C
+
+  where :math:`K_b` = a bulk reaction constant and :math:`r_b` = the bulk decay rate.
+
+For first-order decay, the rate of a pipe wall reaction is expressed as:
+
+  .. math::
+     r_w = -\frac{ 2 K_w K_f C } { R (K_w + K_f) }
+
+  where :math:`K_w` = wall reaction rate constant (length/time), :math:`r_w` = wall reaction rate,
+  :math:`K_f` = mass transfer coefficient (length/time), and :math:`R` = pipe
+  radius. 
+
+  Mass transfer coefficients are expressed in terms of a dimensionless Sherwood number (:math:`Sh`):
+
+  .. math::
+     {K}_{f} = Sh \frac{\mathcal{D}}{2R}
+
+  in which :math:`\mathcal{D}` = the molecular diffusivity of the species being
+  transported (length :sup:`2` /time) and :math:`R` = pipe radius. In
+  fully developed laminar flow, the average Sherwood number along the length
+  of a pipe can be expressed as
+
+  .. math::
+     Sh = 3.65 + \frac{0.0668 ( 2R/L )Re\ Sc} {1 + 0.04{ [ ( 2R/L )Re\ Sc ]}^{2/3}}
+
+  in which :math:`Re` = Reynolds number and :math:`Sc` = Schmidt number
+  (kinematic viscosity of water divided by the diffusivity of the chemical). 
+  
+  For turbulent flow, the empirical correlation is used:
+
+  .. math::
+     Sh = 0.0149{Re}^{0.88}{Sc}^{1/3}
+
+
+:numref:`chlorine_inp` is the MSX input file that defines this model for the EPANET example model NET2. In this model, :math:`K_b = 0.3 /day`
+and :math:`K_w = 1.0 ft/day`. The Schmidt number is specified in the file as a dimensionless constant of 846.15, based on the kinematic viscosity of water and molecular diffusivity of chlorine. 
+The terms SHt and SHl are defined as the Sherwood number under the turbulent and laminar flow condition, respectively.  STEP is the 
+step function defined inside the EPANET MSX: STEP (x<=0 ? 0 : 1). This function determines the Sherwood number based on the Reynolds number (:math:`Re`). As described in 
+:numref:`terms`, :math:`D`, :math:`Len`, and :math:`Re` are reserved keywords for the Reynolds number, pipe diameter, and pipe length, respectively.
+The molecular diffusivity of chlorine is :math:`1.3 \times 10^{-8} ft^2/s`. Since the rate unit here is day, it is correspondingly converted to 
+:math:`0.00112 ft^2/day` for the caluclation of :math:`K_f`. 
+
+In order to model the longitudinal dispersion, the relative diffusivity of chlorine is defined in the :ref:`diffusivity` section.
+It is simply 1.0 (:math:`1.3 \times 10^{-8} ft^2/s`) here. It should be noted that the molecular diffusivity used in the calculation of :math:`K_f` is to model the transport of chlorine from the bulk water
+to the pipe wall, while the diffusivity specified in the [DIFFUSIVITY] section is to model the longitudinal dispersion of chlorine.  
+If the relative diffsusity of chlorine is not defined, longitudinal dispersion is ignored and the model will be the same as the EPANET's first-order decay model. 
+
+
+.. literalinclude:: example2.msx
+    :language: none
+    :caption: EPANET-MSX input file for modeling chlorine decay and dispersion (example2.msx)
+    :name: chlorine_inp
 ..
 
 
@@ -184,7 +247,7 @@ empirical relation might be:
 
 .. math::
    \begin{aligned}
-   K_f = {{1.6 \times 10^{-4}Re^{0.88}} \over {D}}
+   K_f = {{6.67 \times 10^{-6}Re^{0.88}} \over {D}}
    \end{aligned}
    :label: masstransfer
 
@@ -429,7 +492,7 @@ Several notes of explanation require mentioning:
     the inhibition factors Ib and Ia is internally evaluated to 1 when
     x > 0 and is 0 otherwise.
 
-6.  The variables U and Av are reserved symbols in EPANET-MSX that
+6.  The variables U and Av are reserved symbols (see :numref:`terms`) in EPANET-MSX that
     represent flow velocity and pipe surface area per unit volume,
     respectively, and their values are automatically computed by the
     program.
@@ -499,7 +562,7 @@ being modeled. This is done in the [QUALITY] section, using the GLOBAL
 specifier to set values throughout the network. (The alkalinity of 0.004
 moles/L is equivalent to 200 :math:`mg/L` CaCO\ :sub:`3` while the
 H\ :sup:`+` value of :math:`2.818 \times 10^{-8}` moles/L is the same as a pH of
-7.75.)
+7.55.)
 
 .. tabularcolumns:: |p{1.0cm}|p{5cm}|p{10cm}|
 

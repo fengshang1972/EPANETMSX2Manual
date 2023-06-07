@@ -62,13 +62,15 @@ order. Blank lines can appear anywhere in the file and the semicolon (;)
 can be used to indicate what follows on the line is a comment, not data.
 A maximum of 1024 characters can appear on a line. The ID labels used to
 identify objects can be any combination of characters and numbers that
-do not contain square brackets ([]), double quotes or a semicolon.
+do not contain square brackets ([]), double quotes or a semicolon, except that 
+they cannot be the same as any reserved keyword or hydrauic variable (see :ref:`terms`).
 
 On the pages that follow the contents and formats of each input file
 section are described in the order shown above. Reserved keywords are
-shown in bold and option choices are separated by slashes.
+shown in bold and option choices are separated by slashes. The usage of parentheses in mathematical expressions (in :ref:`terms`, :ref:`pipes`, and :ref:`tanks`) is encouraged 
+to avoid potential misintepretations of the expression parser of EPANET-MSX.
 
-.. literalinclude:: template.inp
+.. literalinclude:: template.msx
     :language: none
     :name: ex_template_inp
     :caption: EPANET-MSX input file template
@@ -106,7 +108,7 @@ shown in bold and option choices are separated by slashes.
 
          **AREA_UNITS** :math:`\ \;\;` **FT2/M2/CM2**
 
-         **TIME_UNITS** :math:`\ \ \ ` **SEC/MIN/HR/DAY**
+         **RATE_UNITS** :math:`\ \ \ ` **SEC/MIN/HR/DAY**
       
          **SOLVER** :math:`\ \ \ \ \ \ \ \ \ \ \;` **EUL/RK5/ROS2**
       
@@ -129,7 +131,7 @@ shown in bold and option choices are separated by slashes.
          \begin{tabular}{l l}
 
             \textbf{AREA\_UNITS} & \textbf{FT2/M2/CM2} \\
-            \textbf{Time\_UNITS} & \textbf{SEC/MIN/HR/DAY} \\
+            \textbf{RATE\_UNITS} & \textbf{SEC/MIN/HR/DAY} \\
             \textbf{SOLVER} & \textbf{EUL/RK5/ROS2} \\
             \textbf{COUPLING} & \textbf{FULL/NONE} \\
             \textbf{TIMESTEP} & \textit{seconds} \\
@@ -154,7 +156,7 @@ shown in bold and option choices are separated by slashes.
 
          The default is **FT2**.
 
-      **TIME_UNITS** is the units in which all reaction rate terms are expressed. The default units are hours (**HR**).
+      **RATE_UNITS** is the units in which all reaction rate terms are expressed. The default units are hours (**HR**).
 
       **SOLVER** is the choice of numerical integration method used to solve the reaction system where:
 
@@ -162,7 +164,7 @@ shown in bold and option choices are separated by slashes.
 
          **RK5** :math:`\ ` = Runge-Kutta 5\ :sup:`th` order integrator
 
-         **ROS2** = 2\ :sup:`nd` order Rosenbrock integrator.
+         **ROS2** = 2\ :sup:`nd` order Rosenbrock integrator
 
          The default solver is **EUL**.
 
@@ -280,7 +282,7 @@ shown in bold and option choices are separated by slashes.
   
          \begin{tabular}{l l l}
             \textbf{PARAMETER} & \textit{name} & \textit{value}\\
-            \textbf{CCONSTANT} & \textit{name} & \textit{value}\\
+            \textbf{CONSTANT} & \textit{name} & \textit{value}\\
  
          \end{tabular}
       
@@ -382,6 +384,8 @@ shown in bold and option choices are separated by slashes.
       **Ff** :math:`\ \ ` Darcy-Weisbach friction factor
 
       **Av** :math:`\ \,` Surface area per unit volume (area units/L)
+
+      **Len** :math:`\ `  Pipe length (feet or meters)
 
    **Examples:**
 
@@ -485,7 +489,7 @@ shown in bold and option choices are separated by slashes.
 
       ;Assumes area units are FT2 and diameter in FT
 
-      ;CFPL is TERM equal to FT3/Liter, thus (4*CFPL/D) == Av
+      ;CFPL is user-defined TERM equal to FT3/Liter, thus (4*CFPL/D) == Av
 
       RATE C K*C - (4*CFPL/D)*(K1*(Smax-Cs)*C - K2*Cs)
 
@@ -700,6 +704,8 @@ shown in bold and option choices are separated by slashes.
 
       -  Use the **LINK** format to set an initial concentration of a wall species within a particular pipe.
 
+      -  Use the **NODE** and **LINK** format after the **GLOBAL** format to overwrite the **GLOBAL** initial condition
+
       -  The initial concentration of a bulk species within a pipe is assumed equal to the initial concentration at the downstream node of the pipe.
 
       -  All initial concentrations are assumed to be zero unless otherwise specified in this section.
@@ -764,7 +770,7 @@ shown in bold and option choices are separated by slashes.
 
             \textit{pipeID}: & the ID label of a pipe link in the network \\
             \textit{tankID}: & the ID label of a tank node in the network \\
-            \textit{paramID}: & the name of one of the reaction rate parameters \\
+            \textit{paramID}: & the name of one of the reaction rate parameters listed in the [COEFFICIENTS] section \\
             \textit{value}: & the parameter's value used for the specified pipe or tank.
          
          \end{tabular}
@@ -810,7 +816,7 @@ shown in bold and option choices are separated by slashes.
 
       -  If extending the list of multipliers to another line remember to begin the line with the pattern name.
 
-      -  All patterns share the same time period interval as defined in the **[TIMES]** section of the EPANET input file being used in conjunction with the EPANET-MSX input file.
+      -  All patterns share the same time period interval (pattern time step) as defined in the **[TIMES]** section of the EPANET input file being used in conjunction with the EPANET-MSX input file.
 
       -  Each pattern can have a different number of time periods.
 
@@ -878,7 +884,7 @@ shown in bold and option choices are separated by slashes.
 
    **Remarks:**
    
-      The relative diffusivity is the ratio of the molecular diffusivity of the species to that of chlorine at 20 deg. C (:math:`0.00112 ft^2/day`). 
+      The relative diffusivity is the ratio of the species' molecular diffusivity in water to that of chlorine at 20 deg. C (:math:`0.00112 ft^2/day`). 
       If the relative diffusivity of a species is not defined in this section, the dispersion of the species is neglected. 
 
    
@@ -975,7 +981,7 @@ shown in bold and option choices are separated by slashes.
 
       -  Use as many **NODES** and **LINKS** lines as it takes to specify which locations get reported. The default is not to report results for any nodes or links.
 
-      -  Use the **SPECIES** line to specify which species get reported and at what precision. The default is to report all species at two decimal places of precision.
+      -  Use the **SPECIES** line to specify which species get reported and at what precision. The default is to report no species. Species selected for reporting have a default of two decimal places of precision.
 
       -  The **FILE** line is used to have the report written to a specific file. If not provided the report will be written to the same file used for reporting program errors and simulation status.
 

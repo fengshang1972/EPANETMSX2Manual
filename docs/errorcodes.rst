@@ -171,7 +171,7 @@ MSX ERROR CODES
    |                  |                                                                 |
    |                  | An illegal operation (such as trying to raise a negative number |
    |                  | to a power) occurred while evaluating a mathematical expression.| 
-   |                  | The specie or term with the offending mathematical expression   | 
+   |                  | The species or term with the offending mathematical expression  | 
    |                  | is identified in the EPANET report file and the simulation is   |     
    |                  | terminated.                                                     |
    +------------------+-----------------------------------------------------------------+
