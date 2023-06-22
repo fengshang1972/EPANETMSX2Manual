@@ -1,6 +1,7 @@
 .. toctree::
    :maxdepth: 2
 
+   disclaimer.rst
    1_introduction.rst
    2_framework.rst
    3_programusage.rst

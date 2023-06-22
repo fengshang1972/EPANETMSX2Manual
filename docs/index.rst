@@ -21,6 +21,7 @@
    :caption: Table of Contents
    :hidden:
 
+   disclaimer.rst
    1_introduction.rst
    2_framework.rst
    3_programusage.rst
