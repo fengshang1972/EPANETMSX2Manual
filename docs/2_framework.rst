@@ -64,7 +64,7 @@ contained in the system and can be modeled using principles of
 conservation of mass coupled with reaction kinetics:
 
 .. _Figure_2_2:
-.. figure:: ./media/image3b.png
+.. figure:: ./media/image3.png
    :width: 4.0in
    
 
